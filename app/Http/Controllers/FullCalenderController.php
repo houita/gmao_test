@@ -1,73 +1,59 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use DB;
+
+use Session;
+
 use App\Models\Event;
 
 class FullCalenderController extends Controller
 {
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
     public function index(Request $request)
     {
-        // on page load this ajax code block will be run
-        if ($request->ajax()) {
-
-            $data = Event::whereDate('start', '>=', $request->start)
-                ->whereDate('end',   '<=', $request->end)
-                ->get(['id', 'title', 'start', 'end']);
-
+    	if($request->ajax())
+    	{
+    		$data = Event::whereDate('start', '>=', $request->start)
+                       ->whereDate('end',   '<=', $request->end)
+                       ->get(['id', 'title', 'start', 'end']);
             return response()->json($data);
-        }
-
-        return view('fullcalendar');
+    	}
+    	return view('event.full-calender');
     }
 
-    /**
-     * This method is to handle event ajax operation
-     *
-     * @return response()
-     */
-    public function ajax(Request $request)
+    public function action(Request $request)
     {
-        switch ($request->type) {
+    	if($request->ajax())
+    	{
+    		if($request->type == 'add')
+    		{
+    			$event = Event::create([
+    				'title'		=>	$request->title,
+    				'start'		=>	$request->start,
+    				'end'		=>	$request->end
+    			]);
 
-            // For add event
-            case 'add':
-                $data = Event::create([
-                    'title' => $request->title,
-                    'start' => $request->start,
-                    'end' => $request->end,
-                ]);
+    			return response()->json($event);
+    		}
 
-                return response()->json($data);
-                break;
+    		if($request->type == 'update')
+    		{
+    			$event = Event::find($request->id)->update([
+    				'title'		=>	$request->title,
+    				'start'		=>	$request->start,
+    				'end'		=>	$request->end
+    			]);
 
-            // For update event        
-            case 'update':
-                $data = Event::find($request->id)->update([
-                    'title' => $request->title,
-                    'start' => $request->start,
-                    'end' => $request->end,
-                ]);
+    			return response()->json($event);
+    		}
 
-                return response()->json($data);
-                break;
+    		if($request->type == 'delete')
+    		{
+    			$event = Event::find($request->id)->delete();
 
-            // For delete event    
-            case 'delete':
-                $data = Event::find($request->id)->delete();
-
-                return response()->json($data);
-                break;
-
-            default:
-                break;
-        }
-     
+    			return response()->json($event);
+    		}
+    	}
     }
 }
+?>

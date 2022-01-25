@@ -51,8 +51,12 @@ Route::get('reset-password/{token}', [App\Http\Controllers\Auth\ResetPasswordCon
 Route::post('reset-password', [App\Http\Controllers\Auth\ResetPasswordController::class, 'updatePassword']);
 
 //-------------------event--------------------------------------------------//
-Route::get('event', [FullCalenderController::class, 'index'])->name('event');
-Route::post('eventAjax', [FullCalenderController::class, 'ajax'])->name('eventAjax');
+Route::get('full-calender', [FullCalenderController::class, 'index'])->name('full-calender');
+
+Route::post('full-calender/action', [FullCalenderController::class, 'action'])->name('full-calender/action');
+
 //-------------------machine--------------------------------------------------//
 Route::get('machine', [App\Http\Controllers\MachineController::class, 'index'])->name('machine');
 Route::post('form/machine/save', [App\Http\Controllers\MachineController::class, 'saveRecord'])->name('form/machine/save');
+Route::post('form/machine/delete', [App\Http\Controllers\MachineController::class, 'deleteMachine'])->name('form/machine/delete');
+Route::post('form/machine/update', [App\Http\Controllers\MachineController::class, 'updateMachine'])->name('form/machine/update');

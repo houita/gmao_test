@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- message --}}
-    {!! Toastr::message() !!}
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
