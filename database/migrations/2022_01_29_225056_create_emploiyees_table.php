@@ -4,22 +4,21 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMachinesTable extends Migration
+class CreateEmploiyeesTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up() 
+    public function up()
     {
-        Schema::create('machines', function (Blueprint $table) {
+        Schema::create('emploiyees', function (Blueprint $table) {
             $table->id();
-            $table->string('ref_machine')->nullable();
-            $table->string('nom_machine')->nullable();
-            $table->date('date_service')->nullable();
-            $table->string('etat_machine')->nullable();
-
+            $table->string('matricule')->nullable();
+            $table->string('nom')->nullable();
+            $table->string('service')->nullable();
+            $table->string('telephone')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateMachinesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('machines');
+        Schema::dropIfExists('emploiyees');
     }
 }

@@ -19,7 +19,7 @@
 	<link rel="stylesheet" href="{{ URL::to('assets/css/line-awesome.min.css') }}">
 	<!-- Datatable CSS -->
 	<link rel="stylesheet" href="{{ URL::to('assets/css/dataTables.bootstrap4.min.css') }}">
-	
+	<link rel="stylesheet" href="{{ URL::to('assets/css/jquery.dataTables.css') }}">
 	<!-- Select2 CSS -->
 	<link rel="stylesheet" href="{{ URL::to('assets/css/select2.min.css') }}">
 	<!-- Datetimepicker CSS -->

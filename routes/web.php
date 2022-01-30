@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FullCalenderController;
 use App\Http\Controllers\MachineController;
+use App\Http\Controllers\EmploiyeeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,10 +30,12 @@ Route::group(['middleware'=>'auth'],function()
     {
         return view('home');
     });
+    Route::get('home',function()
+    {
+        return view('home');
+    });
 });
-
 Auth::routes();
-
 // ----------------------------- main dashboard ------------------------------//
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -60,3 +63,12 @@ Route::get('machine', [App\Http\Controllers\MachineController::class, 'index'])-
 Route::post('form/machine/save', [App\Http\Controllers\MachineController::class, 'saveRecord'])->name('form/machine/save');
 Route::post('form/machine/delete', [App\Http\Controllers\MachineController::class, 'deleteMachine'])->name('form/machine/delete');
 Route::post('form/machine/update', [App\Http\Controllers\MachineController::class, 'updateMachine'])->name('form/machine/update');
+
+//-------------------emploiyee--------------------------------------------------//
+Route::get('emploiyee', [App\Http\Controllers\EmploiyeeController::class, 'index'])->name('emploiyee');
+Route::post('form/emploiyee/save', [App\Http\Controllers\EmploiyeeController::class, 'saveRecord'])->name('form/emploiyee/save');
+Route::post('form/emploiyee/delete', [App\Http\Controllers\EmploiyeeController::class, 'deleteEmploiyee'])->name('form/emploiyee/delete');
+Route::post('form/emploiyee/update', [App\Http\Controllers\EmploiyeeController::class, 'updateEmploiyee'])->name('form/emploiyee/update');
+Route::post('form/presence/save', [App\Http\Controllers\EmploiyeeController::class, 'saveRecord'])->name('form/presence/save');
+Route::get('presence', function () {  return view('emploiyee.e_presence'); 
+})->name('presence');

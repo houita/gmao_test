@@ -13,9 +13,9 @@
 						</li>
 						<li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Staff </span> <span class="menu-arrow"></span></a>
 							<ul class="submenu_class" style="display: none;">
-                        <li><a href="enregitrement-staff.php"> enregistrement </a></li>
+                        <li><a href="{{ route ('presence') }}"> enregistrement </a></li>
 					    <li><a  href="historique_staff.php"> historique </a></li>
-						<li><a href="staff_liste.php"> liste des personnelles </a></li>
+						<li><a href="{{ route ('emploiyee') }}"> liste des personnelles </a></li>
 						</ul>
 						</li>
 						<li class="submenu"> <a href="#"><i class="fas fa-tools"></i> <span> Machine </span> <span class="menu-arrow"></span></a>
